@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install kubectl
         uses: azure/setup-kubectl@v2.0
@@ -27,10 +27,10 @@ jobs:
 
       - name: Run eks vpc stack script
         run: |
-          chmod +x ../create-vpc-stack.sh
-          bash ../create-vpc-stack.sh
+          chmod +x create-vpc-stack.sh
+          bash create-vpc-stack.sh
 
       - name: Run eks cluster stack script
         run: |
-          chmod +x ../create-eks-stack.sh
-          bash ../create-eks-stack.sh
+          chmod +x create-eks-stack.sh
+          bash create-eks-stack.sh
