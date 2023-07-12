@@ -25,10 +25,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Deploy to EKS
+      - name: Run ecr stack script
         run: |
-          kubectl apply -f deployment.yaml
-          kubectl apply -f service.yaml
+          chmod +x create-ecr-stack.sh
+          bash create-ecr-stack.sh
 
       - name: Run eks vpc stack script
         run: |
