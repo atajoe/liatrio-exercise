@@ -26,7 +26,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Run eks vpc stack script
-        run: ../bash create-vpc-stack.sh
+        run: bash ../create-vpc-stack.sh
 
       - name: Run eks cluster stack script
-        run: ../bash create-eks-stack.sh
+        run: bash ../create-eks-stack.sh
