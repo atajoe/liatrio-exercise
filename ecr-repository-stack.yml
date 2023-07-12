@@ -10,7 +10,7 @@ Parameters:
     Type: String
 
 #------------------------
-#   RESOURCES
+#   RESOURCESS
 #------------------------
 Resources:
   ecrRepo:

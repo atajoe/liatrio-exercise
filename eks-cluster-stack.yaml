@@ -5,7 +5,7 @@ Description: 'ExpressApi EKS Cluster'
 Parameters:
   ClusterName:
     Type: String
-    Default: ExpressApiCluster-v2
+    Default: ExpressApiCluster
   NumberOfWorkerNodes:
     Type: Number
     Default: 1
