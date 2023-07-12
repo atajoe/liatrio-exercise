@@ -26,11 +26,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Run eks vpc stack script
-        run: |
-          chmod +x ../liatrio-exercise/create-vpc-stack.sh
-          bash ../liatrio-exercise/create-vpc-stack.sh
+        run: bash ../liatrio-exercise/create-vpc-stack.sh
 
       - name: Run eks cluster stack script
-        run: |
-          chmod +x ../liatrio-exercise/create-eks-stack.sh
-          bash ../liatrio-exercise/create-eks-stack.sh
+        run: bash ../liatrio-exercise/create-eks-stack.sh
