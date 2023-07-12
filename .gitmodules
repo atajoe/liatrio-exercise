@@ -1,0 +1,3 @@
+[submodule "liatrio-exercise1"]
+	path = liatrio-exercise1
+	url = https://github.com/atajoe/liatrio-exercise.git
