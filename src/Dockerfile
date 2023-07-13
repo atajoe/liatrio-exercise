@@ -2,7 +2,7 @@ FROM node:14.8.0-slim
 
 WORKDIR /liatrioexercise/src
 
-COPY package.json /src
+COPY package.json /liatrioexercise/src
 
 RUN npm install && \
     npm cache clean --force && \
