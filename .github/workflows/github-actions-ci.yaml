@@ -52,11 +52,7 @@ jobs:
           echo "This are the variables: $REGISTRY"
 
       - name: Update Deployment YAML
-        run: |
-          REGISTRY_LOWERCASE=$(echo "${{ steps.build-ecr.env.REGISTRY }}" | tr '[:upper:]' '[:lower:]')
-          REPOSITORY_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.REPOSITORY }}" | tr '[:upper:]' '[:lower:]')
-          IMAGE_TAG_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.IMAGE_TAG }}" | tr '[:upper:]' '[:lower:]')
-          envsubst < deployment.yaml | tee deployment-updated.yaml
+        run: echo "Hello $REGISTRY. This is the repository. $REPOSITORY"
 
       - name: Display deployment.yaml content
         run: |
