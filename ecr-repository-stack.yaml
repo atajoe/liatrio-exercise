@@ -1,21 +1,6 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Description: ExpressApi ECR
-
-#------------------------
-#   PARAMETERS
-#------------------------
-Parameters:
-  repoName:
-    Description: ExpressApi ECR Repo
-    Type: String
-
-#------------------------
-#   RESOURCESS
-#------------------------
-Resources:
-  ecrRepo:
-    Type: AWS::ECR::Repository
-    Properties:
-      RepositoryName: !Ref repoName
-      ImageScanningConfiguration:
-        ScanOnPush: true
+MyRepository:
+  Type: AWS::ECR::Repository
+  Properties:
+    RepositoryName: 'test-repository'
+    ImageScanningConfiguration:
+      ScanOnPush: true
