@@ -1,8 +1,8 @@
 FROM node:14.8.0-slim
 
-WORKDIR /liatrioexercise/src
+WORKDIR /usr/src/
 
-COPY package.json /liatrioexercise/src
+COPY package.json /src
 
 RUN npm install && \
     npm cache clean --force && \
