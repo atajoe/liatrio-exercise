@@ -52,11 +52,11 @@ jobs:
           echo "This are the variables: $REGISTRY"
 
       - name: Update Deployment YAML
-        run: echo "Hello $REGISTRY. This is the repository. $REPOSITORY"
+        run: echo "Hello ${{env.REGISTRY}}. This is the repository. ${{env.REPOSITORY}}"
 
-      - name: Display deployment.yaml content
-        run: |
-          cat deployment-updated.yaml
+      # - name: Display deployment.yaml content
+      #   run: |
+      #     cat deployment-updated.yaml
 
       # - name: Update kube config
       #   run: aws eks update-kubeconfig --name ExpressApi-EKSCluster
