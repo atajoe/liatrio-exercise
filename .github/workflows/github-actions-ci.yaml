@@ -52,7 +52,7 @@ jobs:
           echo "This are the variables: $REGISTRY"
 
       - name: Update Deployment YAML
-        run: echo "Hello ${{env.REGISTRY}}. This is the repository. ${{env.REPOSITORY}}"
+        run: echo "Hello ${{steps.env.REGISTRY}}. This is the repository. ${{steps.env.REPOSITORY}}"
 
       # - name: Display deployment.yaml content
       #   run: |
