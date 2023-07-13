@@ -2,7 +2,7 @@ FROM node:14.8.0-slim
 
 WORKDIR /usr/src/app
 
-COPY package.json /src
+COPY . .
 
 RUN npm install && \
     npm cache clean --force && \
