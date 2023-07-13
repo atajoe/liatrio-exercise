@@ -16,6 +16,13 @@ spec:
     spec:
       containers:
         - name: expressapi7
+          env:
+            - name: REGISTRY
+              value: $REGISTRY
+            - name: REPOSITORY
+              value: $REPOSITORY
+            - name: IMAGE_TAG
+              value: $IMAGE_TAG
           image: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
           imagePullPolicy: Always
           ports:
