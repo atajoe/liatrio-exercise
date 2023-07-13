@@ -1,6 +1,6 @@
-MyRepository:
-  Type: AWS::ECR::Repository
-  Properties:
-    RepositoryName: 'test-repository'
-    ImageScanningConfiguration:
-      ScanOnPush: true
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: ExpressApi-ECR-Repo
