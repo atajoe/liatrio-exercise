@@ -1,4 +1,4 @@
 aws ecr create-repository \
-    --repository-name ExpressApi-Repo  \
+    --repository-name expressapi-repo  \
     --image-scanning-configuration scanOnPush=true \
     --region us-east-1 \
