@@ -8,8 +8,6 @@ RUN npm install && \
     npm cache clean --force && \
     rm -rf /var/lib/apt/lists/*
 
-COPY . .
-
 EXPOSE 3001
 
 CMD [ "npm", "start"]
