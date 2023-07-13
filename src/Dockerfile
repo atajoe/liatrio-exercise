@@ -4,6 +4,9 @@ COPY src/ .
 
 WORKDIR /src/
 
+RUN ls -la && \
+    pwd
+
 RUN npm install && \
     npm cache clean --force && \
     rm -rf /var/lib/apt/lists/*
