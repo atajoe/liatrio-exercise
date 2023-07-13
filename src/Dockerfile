@@ -1,8 +1,8 @@
 FROM node:14.8.0-slim
 
-WORKDIR /src/
+COPY src/ .
 
-COPY src/* .
+WORKDIR /src/
 
 RUN npm install && \
     ls -la \
