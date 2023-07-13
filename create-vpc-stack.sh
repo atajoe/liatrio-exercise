@@ -14,7 +14,7 @@ stack_status=$(aws cloudformation describe-stacks \
   --output text)
 
 if [[ $stack_status == "CREATE_COMPLETE" ]]; then
-  echo "CloudFormation stack creation succeeded!"
+  echo "CloudFormation VPC stack creation succeeded!"
 else
   echo "CloudFormation stack creation failed with status: $stack_status"
   exit 1
