@@ -2,9 +2,10 @@ FROM node:14.8.0-slim
 
 WORKDIR /src/
 
-COPY . .
+COPY src/* .
 
 RUN npm install && \
+    ls -la \
     npm cache clean --force && \
     rm -rf /var/lib/apt/lists/*
 
