@@ -1,8 +1,8 @@
 FROM node:14.8.0-slim
 
-WORKDIR /src/
+WORKDIR /src
 
-COPY src/* /src/
+COPY . .
 
 RUN ls -la && \
     pwd
