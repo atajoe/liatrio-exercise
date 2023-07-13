@@ -65,6 +65,9 @@ jobs:
           chmod +x create-eks-stack.sh
           bash create-eks-stack.sh
 
+      - name: Wait for EKS cluster to become active
+        run: aws eks wait cluster-active --name ExpressApi-EKSCluster
+
       - name: Update kube config
         run: aws eks update-kubeconfig --name ExpressApi-EKSCluster
 
