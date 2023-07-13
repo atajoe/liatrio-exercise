@@ -25,12 +25,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      # - name: Run create ecr repo script
-      #   run: |
-      #     chmod +x create-ecr-stack.sh
-      #     bash create-ecr-stack.sh
-      #     ECR_REPO_ARN=$(aws ecr describe-repositories --repository-names expressapi-repo --query 'repositories[0].repositoryArn' --output text)
-      #     echo "::set-output name=ecr-repo-arn::$ECR_REPO_ARN"
+      - name: Run create ecr repo script
+        run: |
+          chmod +x create-ecr-stack.sh
+          bash create-ecr-stack.sh
+          ECR_REPO_ARN=$(aws ecr describe-repositories --repository-names expressapi-repo --query 'repositories[0].repositoryArn' --output text)
+          echo "::set-output name=ecr-repo-arn::$ECR_REPO_ARN"
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -64,20 +64,17 @@ jobs:
         run: |
           cat deployment.yaml
 
-      # - name: Run eks vpc stack script
-      #   run: |
-      #     chmod +x create-vpc-stack.sh
-      #     bash create-vpc-stack.sh
+      - name: Run eks vpc stack script
+        run: |
+          chmod +x create-vpc-stack.sh
+          bash create-vpc-stack.sh
 
-      # - name: Run eks cluster stack script
-      #   run: |
-      #     chmod +x create-eks-stack.sh
-      #     bash create-eks-stack.sh
+      - name: Run eks cluster stack script
+        run: |
+          chmod +x create-eks-stack.sh
+          bash create-eks-stack.sh
 
-      # - name: Update kube config
-      #   run: aws eks update-kubeconfig --name ExpressApi-EKSCluster
-
-      # - name: Deploy to EKS
-      #   run: |
-      #     kubectl apply -f deployment-updated.yaml
-      #     kubectl apply -f service.yaml
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml

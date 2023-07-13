@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: expressapi7
+  name: expressapi
   labels:
-    app: expressapi7
+    app: expressapi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: expressapi7
+      app: expressapi
   template:
     metadata:
       labels:
-        app: expressapi7
+        app: expressapi
     spec:
       containers:
-        - name: expressapi7
+        - name: expressapi
           env:
             - name: REGISTRY
               value: $REGISTRY
@@ -31,10 +31,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: expressapi-service7
+  name: expressapi-service
 spec:
   selector:
-    app: expressapi7
+    app: expressapi
   ports:
     - protocol: TCP
       port: 3001
