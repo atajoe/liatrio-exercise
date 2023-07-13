@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ExpressApi-EKSCluster
+  name: expressapi
   labels:
-    app: ExpressApi-EKSCluster
+    app: expressapi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ExpressApi-EKSCluster
+      app: expressapi
   template:
     metadata:
       labels:
-        app: ExpressApi-EKSCluster
+        app: expressapi
     spec:
       containers:
-        - name: ExpressApi-EKSCluster
+        - name: expressapi
           image: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
           imagePullPolicy: Always
           ports:
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ExpressApi-EKSCluster
+  name: expressapi-service
 spec:
   selector:
-    app: ExpressApi-EKSCluster
+    app: expressapi
   ports:
     - protocol: TCP
       port: 3001
