@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: expressapi
-          image: ogabr/expressapi:latest
+          image: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
           imagePullPolicy: Always
           ports:
             - containerPort: 3001
