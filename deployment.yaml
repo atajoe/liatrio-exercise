@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: expressapi4
+  name: expressapi5
   labels:
-    app: expressapi4
+    app: expressapi5
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: expressapi4
+      app: expressapi5
   template:
     metadata:
       labels:
-        app: expressapi4
+        app: expressapi5
     spec:
       containers:
-        - name: expressapi4
+        - name: expressapi5
           image: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
           imagePullPolicy: Always
           ports:
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: expressapi-service4
+  name: expressapi-service5
 spec:
   selector:
-    app: expressapi4
+    app: expressapi5
   ports:
     - protocol: TCP
       port: 3001
