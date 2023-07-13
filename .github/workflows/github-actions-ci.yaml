@@ -51,9 +51,12 @@ jobs:
 
       - name: Update Deployment YAML
         run: |
-          sed -i "s|{{REGISTRY}}|${{ steps.build-ecr.outputs.registry }}|g" deployment.yaml
-          sed -i "s|{{REPOSITORY}}|${{ steps.build-ecr.outputs.repository }}|g" deployment.yaml
-          sed -i "s|{{IMAGE_TAG}}|${{ steps.build-ecr.outputs.image-tag }}|g" deployment.yaml
+          REGISTRY_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.registry }}" | tr '[:upper:]' '[:lower:]')
+          REPOSITORY_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.repository }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE_TAG_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.image-tag }}" | tr '[:upper:]' '[:lower:]')
+          sed -i "s|{{REGISTRY}}|${REGISTRY_LOWERCASE}|g" deployment.yaml
+          sed -i "s|{{REPOSITORY}}|${REPOSITORY_LOWERCASE}|g" deployment.yaml
+          sed -i "s|{{IMAGE_TAG}}|${IMAGE_TAG_LOWERCASE}|g" deployment.yaml
 
       - name: Display deployment.yaml content
         run: |
