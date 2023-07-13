@@ -25,12 +25,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Run create ecr repo script
-        run: |
-          chmod +x create-ecr-stack.sh
-          bash create-ecr-stack.sh
-          ECR_REPO_ARN=$(aws ecr describe-repositories --repository-names expressapi-repo --query 'repositories[0].repositoryArn' --output text)
-          echo "::set-output name=ecr-repo-arn::$ECR_REPO_ARN"
+      # - name: Run create ecr repo script
+      #   run: |
+      #     chmod +x create-ecr-stack.sh
+      #     bash create-ecr-stack.sh
+      #     ECR_REPO_ARN=$(aws ecr describe-repositories --repository-names expressapi-repo --query 'repositories[0].repositoryArn' --output text)
+      #     echo "::set-output name=ecr-repo-arn::$ECR_REPO_ARN"
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -49,22 +49,23 @@ jobs:
           echo "::set-output name=registry::$REGISTRY"
           echo "::set-output name=repository::$REPOSITORY"
           echo "::set-output name=image-tag::$IMAGE_TAG"
+          echo "This are the variables: $REGISTRY"
 
       - name: Update Deployment YAML
         run: |
-          REGISTRY_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.registry }}" | tr '[:upper:]' '[:lower:]')
-          REPOSITORY_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.repository }}" | tr '[:upper:]' '[:lower:]')
-          IMAGE_TAG_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.image-tag }}" | tr '[:upper:]' '[:lower:]')
+          REGISTRY_LOWERCASE=$(echo "${{ steps.build-ecr.env.REGISTRY }}" | tr '[:upper:]' '[:lower:]')
+          REPOSITORY_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.REPOSITORY }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE_TAG_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.IMAGE_TAG }}" | tr '[:upper:]' '[:lower:]')
           envsubst < deployment.yaml | tee deployment-updated.yaml
 
       - name: Display deployment.yaml content
         run: |
           cat deployment-updated.yaml
 
-      - name: Update kube config
-        run: aws eks update-kubeconfig --name ExpressApi-EKSCluster
+      # - name: Update kube config
+      #   run: aws eks update-kubeconfig --name ExpressApi-EKSCluster
 
-      - name: Deploy to EKS
-        run: |
-          kubectl apply -f deployment-updated.yaml
-          kubectl apply -f service.yaml
+      # - name: Deploy to EKS
+      #   run: |
+      #     kubectl apply -f deployment-updated.yaml
+      #     kubectl apply -f service.yaml
