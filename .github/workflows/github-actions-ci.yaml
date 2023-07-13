@@ -15,7 +15,7 @@ jobs:
       - name: Install kubectl
         uses: azure/setup-kubectl@v2.0
         with:
-          version: 'v1.27.0' # default is the latest stable.
+          version: 'v1.27.0' # default is the latest stable
         id: install
 
       - name: Configure AWS Credentials
@@ -52,14 +52,13 @@ jobs:
 
       - name: Update Deployment YAML
         run: |
-          echo "REGISTRY=${{ steps.build-ecr.outputs.registry }}" >> $GITHUB_ENV
-          echo "REPOSITORY=${{ steps.build-ecr.outputs.repository }}" >> $GITHUB_ENV
-          echo "IMAGE_TAG=${{ steps.build-ecr.outputs.image-tag }}" >> $GITHUB_ENV
-          envsubst < deployment.yaml | tee deployment-updated.yaml
+          sed -i "s|{{REGISTRY}}|${{ steps.build-ecr.outputs.registry }}|g" deployment.yaml | kubectl apply -f -
+          sed -i "s|{{REPOSITORY}}|${{ steps.build-ecr.outputs.repository }}|g" deployment.yaml |  kubectl apply -f -
+          sed -i "s|{{IMAGE_TAG}}|${{ steps.build-ecr.outputs.image-tag }}|g" deployment.yaml |  kubectl apply -f -
 
       - name: Display deployment.yaml content
         run: |
-          cat deployment-updated.yaml
+          cat deployment.yaml
 
       # - name: Run eks vpc stack script
       #   run: |

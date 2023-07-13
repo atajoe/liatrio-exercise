@@ -51,9 +51,9 @@ jobs:
 
       - name: Update Deployment YAML
         run: |
-          sed -i "s|{{REGISTRY}}|${{ steps.build-ecr.outputs.registry }}|g" deployment.yaml
-          sed -i "s|{{REPOSITORY}}|${{ steps.build-ecr.outputs.repository }}|g" deployment.yaml
-          sed -i "s|{{IMAGE_TAG}}|${{ steps.build-ecr.outputs.image-tag }}|g" deployment.yaml
+          sed -i "s|{{REGISTRY}}|${{ steps.build-ecr.outputs.registry }}|g" deployment.yaml | kubectl apply -f -
+          sed -i "s|{{REPOSITORY}}|${{ steps.build-ecr.outputs.repository }}|g" deployment.yaml |  kubectl apply -f -
+          sed -i "s|{{IMAGE_TAG}}|${{ steps.build-ecr.outputs.image-tag }}|g" deployment.yaml |  kubectl apply -f -
 
       - name: Run eks vpc stack script
         run: |
