@@ -54,7 +54,7 @@ jobs:
           IMAGE_TAG: 1.0
         run: |
           chmod 644 src/package.json
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f src/Dockerfile ..
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
           echo "::set-output name=registry::$REGISTRY"
           echo "::set-output name=repository::$REPOSITORY"
