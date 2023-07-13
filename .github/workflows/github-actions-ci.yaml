@@ -42,8 +42,8 @@ jobs:
           REPOSITORY: expressapi-repo
           IMAGE_TAG: 1.0
         run: |
+          cd src
           chmod 644 src/package.json
-          ls -R
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f src/Dockerfile .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
           echo "::set-output name=registry::$REGISTRY"
