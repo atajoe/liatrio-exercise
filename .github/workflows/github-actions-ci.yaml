@@ -25,12 +25,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      # - name: Run create ecr repo script
-      #   run: |
-      #     chmod +x create-ecr-stack.sh
-      #     bash create-ecr-stack.sh
-      #     ECR_REPO_ARN=$(aws ecr describe-repositories --repository-names expressapi-repo --query 'repositories[0].repositoryArn' --output text)
-      #     echo "::set-output name=ecr-repo-arn::$ECR_REPO_ARN"
+      - name: Run create ecr repo script
+        run: |
+          chmod +x create-ecr-stack.sh
+          bash create-ecr-stack.sh
+          ECR_REPO_ARN=$(aws ecr describe-repositories --repository-names expressapi-repo --query 'repositories[0].repositoryArn' --output text)
+          echo "::set-output name=ecr-repo-arn::$ECR_REPO_ARN"
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -49,14 +49,16 @@ jobs:
           echo "::set-output name=registry::$REGISTRY"
           echo "::set-output name=repository::$REPOSITORY"
           echo "::set-output name=image-tag::$IMAGE_TAG"
-          echo "This are the variables: $REGISTRY"
-
       - name: Update Deployment YAML
-        run: echo "Hello ${{steps.build-ecr.outputs.REGISTRY}}. This is the repository. ${{steps.build-ecr.outputs.REPOSITORY}}"
+        run: |
+          REGISTRY_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.REGISTRY }}")
+          REPOSITORY_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.REPOSITORY }}")
+          IMAGE_TAG_LOWERCASE=$(echo "${{ steps.build-ecr.outputs.IMAGE_TAG }}")
+          envsubst < deployment.yaml | tee deployment-updated.yaml
 
-      # - name: Display deployment.yaml content
-      #   run: |
-      #     cat deployment-updated.yaml
+      - name: Display deployment.yaml content
+        run: |
+          cat deployment-updated.yaml
 
       # - name: Update kube config
       #   run: aws eks update-kubeconfig --name ExpressApi-EKSCluster
