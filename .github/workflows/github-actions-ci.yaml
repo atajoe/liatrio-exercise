@@ -51,9 +51,9 @@ jobs:
           echo "::set-output name=image-tag::$IMAGE_TAG"
       - name: Update Deployment YAML
         run: |
-          REGISTRY=$(echo "${{ steps.build-ecr.outputs.REGISTRY }}")
-          REPOSITORY=$(echo "${{ steps.build-ecr.outputs.REPOSITORY }}")
-          IMAGE_TAG=$(echo "${{ steps.build-ecr.outputs.IMAGE_TAG }}")
+          echo REGISTRY="${{ steps.build-ecr.outputs.REGISTRY }}"
+          echo REPOSITORY="${{ steps.build-ecr.outputs.REPOSITORY }}"
+          echo IMAGE_TAG="${{ steps.build-ecr.outputs.IMAGE_TAG }}"
           envsubst < deployment.yaml | tee deployment-updated.yaml
 
       - name: Display deployment.yaml content
