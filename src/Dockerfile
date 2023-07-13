@@ -1,6 +1,6 @@
 FROM node:14.8.0-slim
 
-WORKDIR /usr/src/
+WORKDIR /src
 
 COPY package.json /src
 
