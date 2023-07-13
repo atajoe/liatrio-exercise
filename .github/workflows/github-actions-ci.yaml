@@ -59,7 +59,7 @@ jobs:
               -e "s|{{REPOSITORY}}|${{ steps.build-ecr.outputs.repository }}|g" \
               -e "s|{{IMAGE_TAG}}|${{ steps.build-ecr.outputs.image-tag }}|g" \
               deployment.yaml > deployment_updated.yaml
-          cat deployment_update.yaml
+          cat deployment_updated.yaml
           kubectl apply -f deployment_updated.yaml
 
       - name: Display deployment.yaml content
