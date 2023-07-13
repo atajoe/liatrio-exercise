@@ -25,6 +25,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - name: Run eks vpc stack script
+        run: |
+          chmod +x create-vpc-stack.sh
+          bash create-vpc-stack.sh
+
+      - name: Run eks cluster stack script
+        run: |
+          chmod +x create-eks-stack.sh
+          bash create-eks-stack.sh
+
       - name: Run create ecr repo script
         run: |
           chmod +x create-ecr-stack.sh
@@ -63,16 +73,6 @@ jobs:
       - name: Display deployment.yaml content
         run: |
           cat deployment.yaml
-
-      - name: Run eks vpc stack script
-        run: |
-          chmod +x create-vpc-stack.sh
-          bash create-vpc-stack.sh
-
-      - name: Run eks cluster stack script
-        run: |
-          chmod +x create-eks-stack.sh
-          bash create-eks-stack.sh
 
       - name: Deploy to EKS
         run: |
