@@ -53,9 +53,9 @@ jobs:
           REPOSITORY: expressapi-repo
           IMAGE_TAG: 1.0
         run: |
-          echo "registry=REGISTRY" >> $GITHUB_OUTPUT
-          echo "repository=REPOSITORY" >> $GITHUB_OUTPUT
-          echo "image-tag=IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "registry=$REGISTRY" >> $GITHUB_OUTPUT
+          echo "repository=$REPOSITORY" >> $GITHUB_OUTPUT
+          echo "image-tag=$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       # - name: Update kube config
       #   run: aws eks update-kubeconfig --name ExpressApi-EKSCluster
