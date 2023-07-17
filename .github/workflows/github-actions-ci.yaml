@@ -60,7 +60,7 @@ jobs:
           echo "::set-output name=repository::$REPOSITORY"
           echo "::set-output name=image-tag::$IMAGE_TAG"
 
-      # - name:Update kube config
+      # - name: Update kube config
       #   run: aws eks update-kubeconfig --name ExpressApi-EKSCluster
 
       # - name: Update Deployment YAML
