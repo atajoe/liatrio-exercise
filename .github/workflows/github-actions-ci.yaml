@@ -65,7 +65,7 @@ jobs:
           sed -i "s|{{REGISTRY}}|${{ steps.build-ecr.outputs.registry }}|g" deployment.yaml
           sed -i "s|{{REPOSITORY}}|${{ steps.build-ecr.outputs.repository }}|g" deployment.yaml
           sed -i "s|{{IMAGE_TAG}}|${{ steps.build-ecr.outputs.image-tag }}|g" deployment.yaml
-          envsubst < deployment.yaml
+          envsubst < deployment.yaml | kubectl apply -f -
 
       - name: Display deployment.yaml content
         run: |
