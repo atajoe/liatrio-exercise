@@ -35,7 +35,7 @@ jobs:
           chmod +x create-eks-stack.sh
           bash create-eks-stack.sh
 
-      - name: Run create ecr repo script
+      - name: Run create ecr repo script.
         run: |
           chmod +x create-ecr-stack.sh
           bash create-ecr-stack.sh
