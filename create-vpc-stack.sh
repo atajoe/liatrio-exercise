@@ -1,15 +1,15 @@
 aws cloudformation create-stack \
     --region us-east-1 \
-    --stack-name ExpressApi-vpc \
+    --stack-name ExpressApi \
     --template-body file://eks-vpc-stack.yaml
 
 aws cloudformation wait stack-create-complete \
   --region us-east-1 \
-  --stack-name ExpressApi-vpc
+  --stack-name ExpressApi
 
 stack_status=$(aws cloudformation describe-stacks \
   --region us-east-1 \
-  --stack-name ExpressApi-vpc \
+  --stack-name ExpressApi \
   --query 'Stacks[0].StackStatus' \
   --output text)
 

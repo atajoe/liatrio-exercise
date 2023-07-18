@@ -77,3 +77,22 @@ jobs:
       - name: Deploy to EKS
         run: |
           kubectl apply -f deployment.yaml
+
+      - name: Sleep for 5 minutes
+        run: sleep 300s
+        shell: bash
+
+      - name: Run delete ecr repository stack script
+        run: |
+          chmod +x delete-ecr-stack.sh
+          bash delete-ecr-stack.sh
+
+      - name: Run delete eks cluster stack script
+        run: |
+          chmod +x delete-eks-stack.sh
+          bash delete-eks-stack.sh
+
+      - name: Run delete eks vpc stack script
+        run: |
+          chmod +x delete-vpc-stack.sh
+          bash delete-vpc-stack.sh
