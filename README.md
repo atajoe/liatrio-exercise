@@ -1,23 +1,21 @@
 # Introduction
 
-The scripts will create resources in: us-east-1
+The github actions pipeline will create AWS resources in: us-east-1
 
-# How to run it
+# Set up AWS CLI configuration
 - export AWS_PROFILE=user1 # The name of the profile you want to use
-- ./create-vpc-stack.sh
-- ./create-eks-stack.sh
+- aws configure # Configure AWS credentials with AWS access key ID and AWS secret access key.
 
-# How to clean up
-- ./delete-eks-stack.sh
-- ./delete-vpc-stack.sh
+# How to run it 
+- Fork github repository
+- Invoke a push to the github repository to start the CI/CD pipeline.
 
 # Tips
 
-## Update Kubeconfig
+## Upon successful creating of AWS resource - update Kubeconfig
 aws eks update-kubeconfig --region us-east-1 --name my-eks-cluster
 
-## Install an ingress controller
-https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
+# Run kubectl commands to get the External-IP for worker node
+kubectl get service
 
-## Verify ingress controller
-kubectl get service ingress-nginx-controller --namespace=ingress-nginx
+
