@@ -2,7 +2,7 @@
 
 The github actions pipeline will create AWS resources in: us-east-1
 
-# How to run it
+# Set up AWS CLI configuration
 - export AWS_PROFILE=user1 # The name of the profile you want to use
 - aws configure # Configure AWS credentials with AWS access key ID and AWS secret access key.
 
