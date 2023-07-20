@@ -91,6 +91,11 @@ jobs:
           chmod +x delete-eks-stack.sh
           bash delete-eks-stack.sh
 
+      - name: Delete kubernetes resources before deleting VPC
+        run: |
+          kubectl delete pods --all
+          kubectl delete service expressapi
+
       - name: Run delete eks vpc stack script
         run: |
           chmod +x delete-vpc-stack.sh
