@@ -91,6 +91,9 @@ jobs:
           chmod +x delete-eks-stack.sh
           bash delete-eks-stack.sh
 
+      - name: Update kube config again
+        run: aws eks update-kubeconfig --name ExpressApi-EKSCluster
+
       - name: Delete kubernetes resources before deleting VPC
         run: |
           kubectl delete pods --all
